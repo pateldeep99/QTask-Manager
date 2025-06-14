@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QTask Manager</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="logo">
+                <span>📋</span>
+                <span>QTask Manager</span>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                🌙 Dark Mode
+            </button>
+        </header>
+
+        <!-- Controls Section -->
+        <div class="controls">
+            <!-- Search and Filter Section -->
+            <div class="search-filter-section">
+                <h3>Search & Filter</h3>
+                <input type="text" class="search-box" id="searchBox" placeholder="Search tasks by title or description...">
+                <select class="filter-select" id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Work">Work</option>
+                    <option value="Urgent">Urgent</option>
+                    <option value="Education">Education</option>
+                    <option value="Health">Health</option>
+                </select>
+                <select class="filter-select" id="priorityFilter">
+                    <option value="">All Priorities</option>
+                    <option value="high">High Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="low">Low Priority</option>
+                </select>
+                <select class="filter-select" id="statusFilter">
+                    <option value="">All Tasks</option>
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+
+            <!-- Task Form -->
+            <div class="task-form">
+                <h3 id="formTitle">Add New Task</h3>
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label for="taskTitle">Task Title *</label>
+                        <input type="text" id="taskTitle" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="taskDescription">Description</label>
+                        <textarea id="taskDescription" name="description" placeholder="Enter task description..."></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="taskPriority">Priority</label>
+                            <select id="taskPriority" name="priority">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskCategory">Category</label>
+                            <select id="taskCategory" name="category">
+                                <option value="Personal">Personal</option>
+                                <option value="Work">Work</option>
+                                <option value="Urgent">Urgent</option>
+                                <option value="Education">Education</option>
+                                <option value="Health">Health</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">Add Task</button>
+                        <button type="button" class="btn btn-secondary" id="cancelBtn" style="display: none;">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tasks Analysis -->
+        <div class="task-stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalTasks">0</div>
+                <div class="stat-label">Total Tasks</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="pendingTasks">0</div>
+                <div class="stat-label">Pending</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="completedTasks">0</div>
+                <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="highPriorityTasks">0</div>
+                <div class="stat-label">High Priority</div>
+            </div>
+        </div>
+
+        <!-- Tasks View -->
+        <div class="tasks-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span>📝</span>
+                    <span>Your Tasks</span>
+                </h2>
+                <div class="sort-options">
+                    <select id="sortTasks">
+                        <option value="created">Sort by Created Date</option>
+                        <option value="priority">Sort by Priority</option>
+                        <option value="title">Sort by Title</option>
+                        <option value="category">Sort by Category</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="task-grid" id="taskGrid">
+                <!-- Tasks will be dynamically displayed here -->
+            </div>
+            
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-icon">📝</div>
+                <h3>No tasks found</h3>
+                <p>Create your first task to get started!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Confirmation Module -->
+    <div class="modal-overlay" id="modalOverlay" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Confirm Action</h3>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage">Are you sure you want to perform this action?</p>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="confirmBtn">Confirm</button>
+                <button class="btn btn-secondary" id="cancelModalBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="javascript/Task.js"></script>
+    <script src="javascript/TaskManager.js"></script>
+    <script src="javascript/app.js"></script>
+</body>
+</html>
